@@ -1,52 +1,26 @@
-from src.pump import RelayPump, PumpStatus
-import time
-import argparse
+from plantwatering.codes import WaterCodes
+from watering_system import WateringSystem
 
 WATERING_TIME_SECONDS: float = 1.0
-MAX_MOISTURE_THRESHOLD: float= 1.0  # normalized from 0 to 1
+MAX_MOISTURE_THRESHOLD: float = 1.0  # normalized from 0 to 1
 
 
-def parse_args():
+def water(system: WateringSystem, interval: float, moisture_threshold: float):
+    """Runs the main sequence of executing the plant watering:
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--interval", type=float, default=WATERING_TIME_SECONDS)
-    parser.add_argument("--threshold", type=float, default=MAX_MOISTURE_THRESHOLD)
-    
-    return parser.parse_args()
+    - Checking pump status
+    - Checking conditions that would not be ideal for watering
+    - Watering for a predetermined interval
 
-def water(pump: "Pump", interval: float, moisture_threshold: float):
-    '''Runs the main sequence of executing the plant watering, which involves the following:
+    Return status indicates if watering is successful, otherwise error
+    """
 
-        - Checking pump status
-        - Checking conditions that would not be ideal for watering
-        - "Turning on" the pump, i.e, starting the relay
-        - Waiting a predetermined amount of time
-        - Turning off the pump
+    if system.is_tank_empty():
+        return WaterCodes.EMPTY_TANK
 
-        Return status indicates if watering is successful, otherwise a specific error is returned
-    '''
+    elif system.get_moisture_level() > moisture_threshold:
+        return WaterCodes.THRESHOLD_EXCEEDED
 
-    if pump.is_tank_empty():
-        return ""
+    system.water(interval)
 
-    elif pump.get_soil_level() > moisture_threshold:
-        return ""
-
-    pump.turn_on()
-
-    time.sleep(interval)
-
-    pump.turn_off()
-
-    return ""
-
-if __name__ == "__main__":
-
-    args = parse_args()
-    pump = RelayPump()
-    
-    water(
-            pump=pump,
-            interval=args.interval,
-            moisture_threshold=args.threshold
-        )
+    return WaterCodes.SUCCESS
