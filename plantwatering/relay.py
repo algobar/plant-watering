@@ -9,6 +9,3 @@ class Relay(Protocol):
 
     def turn_off(self) -> None:
         ...
-
-
-OutputDevice = OutputDevice(pin=pin, active_high=True, initial_value=False)
