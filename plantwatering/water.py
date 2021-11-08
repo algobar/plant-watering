@@ -1,9 +1,6 @@
 from plantwatering.codes import WaterCodes
 from watering_system import WateringSystem
 
-WATERING_TIME_SECONDS: float = 1.0
-MAX_MOISTURE_THRESHOLD: float = 1.0  # normalized from 0 to 1
-
 
 def water(system: WateringSystem, interval: float, moisture_threshold: float):
     """Runs the main sequence of executing the plant watering:

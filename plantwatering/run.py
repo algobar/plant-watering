@@ -1,5 +1,6 @@
 from plantwatering.codes import WaterCodes
-from plantwatering.factory import systems
+from plantwatering.watering_factory import systems
+from plantwatering.notification import BroadcastNotificationService, NotificationService
 from plantwatering.summary import WateringSummary
 from plantwatering.watering_system import WateringSystem
 from plantwatering.water import water
@@ -15,7 +16,7 @@ def run(
 ) -> None:
 
     watering_system: WateringSystem = systems.create(system_name, **kwargs)
-    notification_service: NotificationService = NotificationService()
+    notification_service: NotificationService = BroadcastNotificationService()
     messenger = messaging.create(messenger_name, **kwargs)
     notification_service.add_messenger(messenger)
 
