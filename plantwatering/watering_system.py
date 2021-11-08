@@ -1,9 +1,12 @@
 import time
 from abc import ABC, abstractmethod
-from pumps import Pump
+from plantwatering.pumps.pump import Pump
 
 
 class WateringSystem(ABC):
+    def __init__(self, pump: Pump, **kwargs) -> None:
+        self.pump = pump
+
     @abstractmethod
     def is_tank_empty(self) -> bool:
         """Checks if tank is empty"""
@@ -15,16 +18,26 @@ class WateringSystem(ABC):
         ...
 
     @abstractmethod
-    def water(interval: float) -> None:
+    def water(self, interval: float) -> None:
         """Waters for set interval"""
         ...
 
 
+class TestSystem(WateringSystem):
+    def is_tank_empty(self) -> bool:
+        return False
+
+    def get_moisture_level(self) -> float:
+        return 0.0
+
+    def water(self, interval: float) -> None:
+
+        self.pump.turn_on()
+        print("watering for", interval, "seconds")
+        self.pump.turn_off()
+
+
 class RPiWateringSystem(WateringSystem):
-    def __init__(self, pump: Pump) -> None:
-
-        self.pump = pump
-
     def is_tank_empty(self) -> bool:
 
         return False

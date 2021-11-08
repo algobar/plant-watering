@@ -1,5 +1,5 @@
-from plantwatering.pumps import Pump
 from plantwatering.relay import Relay
+from .pump import Pump
 
 
 class RelayPump(Pump):

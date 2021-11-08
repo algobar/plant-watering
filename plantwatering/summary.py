@@ -10,6 +10,4 @@ class WateringSummary:
     code: WaterCodes
 
     def __str__(self) -> str:
-        return (
-            f"Watering completed {self.date} at {self.time} with code: {self.code.name}"
-        )
+        return f"Watering completed {self.date} at {self.time} with code: {self.code.name}"

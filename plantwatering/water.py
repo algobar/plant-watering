@@ -1,5 +1,5 @@
 from plantwatering.codes import WaterCodes
-from watering_system import WateringSystem
+from plantwatering.watering_system import WateringSystem
 
 
 def water(system: WateringSystem, interval: float, moisture_threshold: float):

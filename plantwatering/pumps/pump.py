@@ -15,3 +15,11 @@ class Pump(ABC):
     def turn_off(self) -> None:
         """Turns off the pump"""
         ...
+
+
+class TestPump(Pump):
+    def turn_on(self) -> None:
+        print("pump is on!")
+
+    def turn_off(self) -> None:
+        print("pump is off!")
