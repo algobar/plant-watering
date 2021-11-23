@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from .notification import MessengerProtocol
 
-from .messenger import PrintingMessenger
+from .messenger import PrintingMessenger, EmailMessenger
 
 
 @dataclass
@@ -22,3 +22,4 @@ class MessengerFactory:
 
 messaging = MessengerFactory()
 messaging.register(PrintingMessenger.__name__, PrintingMessenger)
+messaging.register(EmailMessenger.__name__, EmailMessenger)

@@ -27,7 +27,7 @@ def build_rpi_watering_system(pin: int, **kwargs) -> WateringSystem:
     return RPiWateringSystem(pump)
 
 
-def build_test_system():
+def build_test_system(**kwargs):
 
     pump: TestPump = TestPump()
 
