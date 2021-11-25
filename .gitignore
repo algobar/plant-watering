@@ -1,3 +1,4 @@
 .vscode/
+.coverage*
 *.egg*
 *__pycache__*

@@ -1,0 +1,4 @@
+{
+    "name": "python-watering",
+    "image": "python:latest",
+}
