@@ -1,6 +1,7 @@
 from .summary import WateringSummary
 from abc import ABC, abstractmethod
 import yagmail
+import os
 
 
 class Messenger(ABC):
@@ -31,6 +32,8 @@ class EmailMessenger:
     def notify(self, message: WateringSummary) -> None:
         """emails the message to the provided email"""
 
-        yagmail.SMTP(self._sender).send(
+        pwd = os.environ.get(self._sender, None)
+
+        yagmail.SMTP(user=self._sender, password=pwd).send(
             self._recipient, "water summary", str(message)
         )

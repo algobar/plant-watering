@@ -24,7 +24,6 @@ mypy-extensions==0.4.3
 packaging==21.2
 pathspec==0.9.0
 pipreqs==0.4.11
--e git+https://github.com/algobar/plant-watering.git@3545c12160764660e6bd486888a31b4f8bf90103#egg=plantwatering
 platformdirs==2.4.0
 pluggy==1.0.0
 premailer==3.10.0
