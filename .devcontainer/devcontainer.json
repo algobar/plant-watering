@@ -1,4 +1,5 @@
 {
     "name": "python-watering",
     "image": "python:latest",
+    "postCreateCommand": "pip install -r requirements.txt"
 }

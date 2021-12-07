@@ -1,4 +1,5 @@
 import setuptools
+from setuptools import find_packages
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
@@ -12,6 +13,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/algobar/plant-watering",
-    packages=["plantwatering"],
+    package_dir={"": "."},
+    packages=find_packages(where="."),
     python_requires=">=3.8",
 )
